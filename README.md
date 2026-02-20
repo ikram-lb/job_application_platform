@@ -1,7 +1,6 @@
 # 🏢 TechCorp — Job Application Platform
 
-> A professional, secure full-stack job application portal built as part of a technical evaluation task.
-
+> A professional, secure full-stack job application portal.
 <img width="1362" height="595" alt="image" src="https://github.com/user-attachments/assets/eae74b22-cabd-4205-950a-8a1444120dbd" />
 <img width="1365" height="642" alt="image" src="https://github.com/user-attachments/assets/f8f8a7f1-2e61-4a9d-950a-cde11f5aeb0d" />
 <img width="1366" height="647" alt="image" src="https://github.com/user-attachments/assets/dea54cbb-883e-4609-b33f-fcc7f74b749a" />
@@ -15,7 +14,7 @@
 
 ## 🎯 Project Overview
 
-This project is a complete job application landing page built as part of an admission task. It allows candidates to:
+This project is a complete job application landing page . It allows candidates to:
 
 - Read a detailed job description
 - Fill in a personal information form
