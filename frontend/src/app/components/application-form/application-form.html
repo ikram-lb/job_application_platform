@@ -1,0 +1,284 @@
+
+<section class="af-section" id="application-form" aria-labelledby="form-title">
+  <div class="container">
+
+    <!-- Section header -->
+    <div class="af-section__header animate-fade-up">
+      <span class="label">Apply Now</span>
+      <h2 class="af-section__title" id="form-title">Submit Your Application</h2>
+      <p class="af-section__subtitle">
+        Fill in your details below. We review every application carefully
+        and aim to respond within 5 business days.
+      </p>
+    </div>
+
+    <!-- ── SUCCESS STATE ── -->
+    <div *ngIf="submitSuccess" class="af-success animate-fade-up" role="alert">
+      <div class="af-success__icon" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="23" stroke="#4caf7d" stroke-width="1.5"/>
+          <path d="M14 24l7 7 13-14" stroke="#4caf7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 class="af-success__title">Application Received!</h3>
+      <p class="af-success__text">
+        Thank you for applying. We've saved your application and will be
+        in touch soon. Keep an eye on <strong>{{ form.value.email }}</strong>.
+      </p>
+      <button class="btn btn--outline" (click)="resetForm()" type="button">
+        Submit Another Application
+      </button>
+    </div>
+
+    <!-- ── FORM ── -->
+    <form
+      *ngIf="!submitSuccess"
+      class="af-form animate-fade-up"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      novalidate
+      aria-label="Job application form"
+    >
+
+      <!-- ── Personal Info ── -->
+      <fieldset class="af-fieldset">
+        <legend class="af-fieldset__legend">Personal Information</legend>
+
+        <!-- Full Name -->
+        <div class="af-field" [class.af-field--error]="isFieldInvalid('fullName')" [class.af-field--valid]="isFieldValid('fullName')">
+          <label class="af-label" for="fullName">
+            Full Name <span class="af-label__required" aria-label="required">*</span>
+          </label>
+          <div class="af-input-wrap">
+            <input
+              class="af-input"
+              id="fullName"
+              type="text"
+              formControlName="fullName"
+              placeholder="e.g. Marie Dupont"
+              autocomplete="name"
+              aria-required="true"
+              [attr.aria-describedby]="isFieldInvalid('fullName') ? 'fullName-error' : null"
+            />
+            <span class="af-input-icon af-input-icon--valid" aria-hidden="true">✓</span>
+          </div>
+          <span *ngIf="isFieldInvalid('fullName')" class="af-field-error" id="fullName-error" role="alert">
+            {{ getFieldError('fullName') }}
+          </span>
+        </div>
+
+        <!-- Email -->
+        <div class="af-field" [class.af-field--error]="isFieldInvalid('email')" [class.af-field--valid]="isFieldValid('email')">
+          <label class="af-label" for="email">
+            Email Address <span class="af-label__required" aria-label="required">*</span>
+          </label>
+          <div class="af-input-wrap">
+            <input
+              class="af-input"
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              aria-required="true"
+              [attr.aria-describedby]="isFieldInvalid('email') ? 'email-error' : null"
+            />
+            <span class="af-input-icon af-input-icon--valid" aria-hidden="true">✓</span>
+          </div>
+          <span *ngIf="isFieldInvalid('email')" class="af-field-error" id="email-error" role="alert">
+            {{ getFieldError('email') }}
+          </span>
+        </div>
+
+        <!-- Phone -->
+        <div class="af-field" [class.af-field--error]="isFieldInvalid('phone')" [class.af-field--valid]="isFieldValid('phone')">
+          <label class="af-label" for="phone">
+            Phone Number
+            <span class="af-label__optional">(optional)</span>
+          </label>
+          <div class="af-input-wrap">
+            <input
+              class="af-input"
+              id="phone"
+              type="tel"
+              formControlName="phone"
+              placeholder="+212 6 12 34 56 78"
+              autocomplete="tel"
+              [attr.aria-describedby]="isFieldInvalid('phone') ? 'phone-error' : null"
+            />
+            <span class="af-input-icon af-input-icon--valid" aria-hidden="true">✓</span>
+          </div>
+          <span *ngIf="isFieldInvalid('phone')" class="af-field-error" id="phone-error" role="alert">
+            {{ getFieldError('phone') }}
+          </span>
+        </div>
+
+        <!-- Position -->
+        <div class="af-field" [class.af-field--error]="isFieldInvalid('position')" [class.af-field--valid]="isFieldValid('position')">
+          <label class="af-label" for="position">
+            Position Applying For <span class="af-label__required" aria-label="required">*</span>
+          </label>
+          <div class="af-input-wrap af-input-wrap--select">
+            <select
+              class="af-input af-input--select"
+              id="position"
+              formControlName="position"
+              aria-required="true"
+              [attr.aria-describedby]="isFieldInvalid('position') ? 'position-error' : null"
+            >
+              <option value="" disabled selected>Select a position…</option>
+              <option value="full-stack-engineer">Full Stack Engineer (Java / Angular)</option>
+              <option value="backend-engineer">Backend Engineer (Java / Spring Boot)</option>
+              <option value="frontend-engineer">Frontend Engineer (Angular)</option>
+              <option value="devops-engineer">DevOps Engineer</option>
+              <option value="tech-lead">Technical Lead</option>
+            </select>
+            <svg class="af-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span *ngIf="isFieldInvalid('position')" class="af-field-error" id="position-error" role="alert">
+            {{ getFieldError('position') }}
+          </span>
+        </div>
+
+      </fieldset>
+
+      <!-- ── Application Details ── -->
+      <fieldset class="af-fieldset">
+        <legend class="af-fieldset__legend">Application Details</legend>
+        <!-- CV Upload -->
+        <div class="af-field">
+          <label class="af-label" for="cvFile">
+            CV / Resume <span class="af-label__required" aria-label="required">*</span>
+          </label>
+
+          <!-- Drag & Drop zone -->
+          <div
+            class="form__dropzone"
+            [class.form__dropzone--has-file]="selectedFile"
+            [class.form__dropzone--error]="fileError"
+            (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)"
+            (drop)="onFileDrop($event)"
+            role="button"
+            tabindex="0"
+            aria-label="File upload area. Click or drag and drop your CV here."
+            (click)="fileInput.click()"
+            (keydown.enter)="fileInput.click()"
+            (keydown.space)="fileInput.click()"
+          >
+
+            <!-- No file selected -->
+            <ng-container *ngIf="!selectedFile">
+              <div class="form__dropzone-icon" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M20 26V14M14 20l6-6 6 6" stroke="#c4a464" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="1" y="1" width="38" height="38" rx="7" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+                </svg>
+              </div>
+              <p class="form__dropzone-text">
+                <strong>Click to upload</strong> or drag and drop your CV
+              </p>
+              <p class="form__dropzone-hint">PDF, DOC, DOCX · Maximum 5MB</p>
+            </ng-container>
+
+            <!-- File selected -->
+            <ng-container *ngIf="selectedFile">
+              <div class="form__dropzone-file" (click)="$event.stopPropagation()">
+                <div class="form__dropzone-file-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M8 4h12l8 8v16a2 2 0 01-2 2H8a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="#4caf7d" stroke-width="1.5"/>
+                    <path d="M20 4v8h8" stroke="#4caf7d" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="form__dropzone-file-info">
+                  <span class="form__dropzone-file-name">{{ fileName }}</span>
+                  <span class="form__dropzone-file-size">
+                    {{ selectedFile ? (selectedFile.size / 1024 / 1024 | number:'1.1-2') + ' MB' : '' }}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  class="form__dropzone-remove"
+                  (click)="removeFile(); $event.stopPropagation()"
+                  aria-label="Remove file"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </ng-container>
+
+          </div>
+
+          <!-- Hidden file input -->
+          <input
+            #fileInput
+            id="cvFile"
+            type="file"
+            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            (change)="onFileSelected($event)"
+            style="display: none"
+            aria-hidden="true"
+          />
+
+          <!-- File error -->
+          <span *ngIf="fileError" class="af-field-error" role="alert">
+            {{ fileError.message }}
+          </span>
+
+        </div>
+
+      </fieldset>
+
+      <!-- ── reCAPTCHA ── -->
+      <div class="af-captcha">
+        <div id="recaptcha-widget" aria-label="CAPTCHA verification"></div>
+        <span *ngIf="captchaError" class="af-field-error" role="alert">
+          Please complete the CAPTCHA verification to continue.
+        </span>
+      </div>
+
+      <!-- ── Global submit error ── -->
+      <div *ngIf="submitError" class="af-global-error" role="alert" aria-live="polite">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="8" stroke="#e05252" stroke-width="1.5"/>
+          <path d="M9 5v4M9 13h.01" stroke="#e05252" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        {{ submitError }}
+      </div>
+
+      <!-- ── Privacy notice + Submit ── -->
+      <div class="af-form__footer">
+        <p class="af-privacy-note">
+          By submitting, you agree that your data will be processed solely for
+          this recruitment. We do not share your information with third parties.
+        </p>
+
+        <button
+          type="submit"
+          class="btn btn--primary btn--submit"
+          [disabled]="isSubmitting"
+          [attr.aria-busy]="isSubmitting"
+          aria-label="Submit job application"
+        >
+          <ng-container *ngIf="!isSubmitting">
+            Submit Application
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </ng-container>
+
+          <ng-container *ngIf="isSubmitting">
+            <span class="btn__spinner" aria-hidden="true"></span>
+            Submitting…
+          </ng-container>
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</section>

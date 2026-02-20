@@ -1,0 +1,79 @@
+/* src/app/components/header/header.component.scss */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 13, 18, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    transition: opacity var(--transition-fast);
+
+    &:hover { opacity: 0.8; }
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      svg {
+        transition: transform var(--transition-normal);
+      }
+    }
+
+    &:hover &-icon svg {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    &-text {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--color-text-primary);
+
+      strong {
+        font-weight: 600;
+        color: var(--color-gold);
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  &__line {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-gold) 30%,
+      var(--color-gold) 70%,
+      transparent 100%
+    );
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__inner { height: 60px; }
+  .header__logo-text { font-size: 1rem; }
+}

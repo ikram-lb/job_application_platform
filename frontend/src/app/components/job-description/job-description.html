@@ -1,0 +1,164 @@
+<!-- job-description.component.html — EDITORIAL MAGAZINE REDESIGN -->
+<section class="jd" id="job-description">
+  <div class="container">
+
+    <!-- ── HERO BANNER ── -->
+    <div class="jd__banner">
+      <div class="jd__banner-meta">
+        <span class="jd__issue">Issue №12 · 2026</span>
+        <div class="jd__tag-row">
+          <span class="jd__tag">Engineering</span>
+          <span class="jd__tag">Remote</span>
+          <span class="jd__tag">Full-time</span>
+        </div>
+      </div>
+
+      <h1 class="jd__headline" id="jd-title">
+        <span class="jd__headline-sub">We're hiring a</span>
+        Full Stack<br>
+        <em>Engineer</em>
+      </h1>
+
+      <div class="jd__banner-footer">
+        <div class="jd__quick-facts">
+          <div class="jd__fact" *ngFor="let detail of jobDetails">
+            <span class="jd__fact-label">{{ detail.label }}</span>
+            <span class="jd__fact-value">{{ detail.value }}</span>
+          </div>
+        </div>
+        <a href="#application-form" class="jd__apply-btn">
+          Apply Now
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── HORIZONTAL RULE WITH STACK ── -->
+    <div class="jd__rule">
+      <div class="jd__rule-line"></div>
+      <span class="jd__rule-label">Java · Spring Boot · Angular · PostgreSQL · Docker · AWS</span>
+      <div class="jd__rule-line"></div>
+    </div>
+
+    <!-- ── BODY: two columns ── -->
+    <div class="jd__body">
+
+      <!-- ── LEFT: main content ── -->
+      <div class="jd__col-main">
+
+        <!-- 01 The Role -->
+        <article class="jd__article">
+          <div class="jd__article-header">
+            <span class="jd__num">01</span>
+            <h2 class="jd__article-title">The Role</h2>
+          </div>
+          <div class="jd__article-content">
+            <p class="jd__lead">
+              You'll own features end-to-end — from schema design to pixel-perfect UI —
+              inside a team that ships things that actually matter.
+            </p>
+            <p>
+              Our stack is <strong>Java 17, Spring Boot 3, Angular 21, PostgreSQL, Docker,
+              AWS</strong>. We move fast without sacrificing quality or security.
+              You'll work directly with product and design, iterate quickly, and have
+              real ownership over what you build.
+            </p>
+          </div>
+        </article>
+
+        <!-- 02 Responsibilities -->
+        <article class="jd__article">
+          <div class="jd__article-header">
+            <span class="jd__num">02</span>
+            <h2 class="jd__article-title">Responsibilities</h2>
+          </div>
+          <div class="jd__article-content">
+            <ul class="jd__list">
+              <li *ngFor="let item of responsibilities; let i = index" class="jd__list-item">
+                <span class="jd__list-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+                <span>{{ item }}</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 03 Requirements -->
+        <article class="jd__article">
+          <div class="jd__article-header">
+            <span class="jd__num">03</span>
+            <h2 class="jd__article-title">Requirements</h2>
+          </div>
+          <div class="jd__article-content">
+            <ul class="jd__checklist">
+              <li *ngFor="let req of requirements" class="jd__checklist-item">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2 7l3.5 3.5L12 3" stroke="#c4a464" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ req }}</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 04 Nice to Have -->
+        <article class="jd__article">
+          <div class="jd__article-header">
+            <span class="jd__num">04</span>
+            <h2 class="jd__article-title">Nice to Have</h2>
+          </div>
+          <div class="jd__article-content">
+            <ul class="jd__checklist jd__checklist--muted">
+              <li *ngFor="let item of niceToHaves" class="jd__checklist-item">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.2"/>
+                </svg>
+                <span>{{ item }}</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ── RIGHT: aside ── -->
+      <aside class="jd__col-aside">
+
+        <!-- Pull quote -->
+        <blockquote class="jd__pullquote">
+          <span class="jd__pullquote-mark" aria-hidden="true">"</span>
+          <p class="jd__pullquote-text">
+            The best software is built by engineers who care deeply about craft,
+            security, and the humans who use what they build.
+          </p>
+          <cite class="jd__pullquote-cite">— Engineering Team</cite>
+        </blockquote>
+
+        <!-- 05 Benefits -->
+        <div class="jd__perks">
+          <h3 class="jd__perks-heading">
+            <span class="jd__num jd__num--sm">05</span>
+            Benefits
+          </h3>
+          <div class="jd__perks-grid">
+            <div *ngFor="let perk of perks" class="jd__perk-item">
+              {{ perk }}
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="jd__cta">
+          <p class="jd__cta-eyebrow">Ready?</p>
+          <p class="jd__cta-heading">Takes 5 minutes.<br>No account needed.</p>
+          <a href="#application-form" class="jd__cta-btn">
+            Start Application
+          </a>
+        </div>
+
+      </aside>
+    </div>
+
+  </div>
+</section>
