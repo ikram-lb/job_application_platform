@@ -88,18 +88,11 @@ recaptcha.secret=6LfPLHIsAAAAAO-HGUBNB_epKuhIV9zu9SN4BP83
 ### 3. Run the Backend
 
 ```bash
-cd backend
 mvn spring-boot:run
 ```
 
 The backend will start at: **http://localhost:8080**
 
-You should see in the console:
-```
-Started JobApplicationPageApplication in X seconds
-```
-
-> The `applicants/` folder is created automatically on the first form submission.
 
 ---
 
